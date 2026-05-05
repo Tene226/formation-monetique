@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -63,7 +63,7 @@
         </ol>
 
         <h2 id="motifs">2. Motifs de chargeback</h2>
-        <table class="data-table">
+        <div class="data-table-wrap"><table class="data-table">
           <thead><tr><th>Catégorie</th><th>Motif</th><th>Preuve de défense</th></tr></thead>
           <tbody>
             <tr><td>Fraude</td><td>Transaction non autorisée</td><td>Ticket signé + log PIN (preuve présence physique)</td></tr>
@@ -73,7 +73,7 @@
             <tr><td>Autorisation</td><td>Absence d'autorisation</td><td>Log d'autorisation positive</td></tr>
             <tr><td>Traitement</td><td>Erreur de montant</td><td>Ticket original du TPE</td></tr>
           </tbody>
-        </table>
+        </table></div>
 
         <h3>Double débit</h3>
         <p>Même transaction présentée deux fois à la compensation → deux débits sur le compte porteur. Causes possibles : bug de télécollecte, double soumission back-office. La preuve est dans les logs de clearing.</p>
