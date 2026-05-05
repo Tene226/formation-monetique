@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 2 — Schémas de paiement Visa & Mastercard | MonétiquePrep</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <h1>💳 MonétiquePrep</h1>
+      <div class="subtitle">Préparation Entretien Monétique</div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="../index.html"><span class="nav-icon">🏠</span> Tableau de bord</a>
+      <a href="module1.html"><span class="nav-icon">⚖️</span> M1 — GIM-UEMOA <span class="nav-badge not_started" id="nav-badge-module1"></span></a>
+      <a href="module2.html" class="active"><span class="nav-icon">💳</span> M2 — Visa & MC <span class="nav-badge not_started" id="nav-badge-module2"></span></a>
+      <a href="module3.html"><span class="nav-icon">🔐</span> M3 — Sécurité <span class="nav-badge not_started" id="nav-badge-module3"></span></a>
+      <a href="module4.html"><span class="nav-icon">⚠️</span> M4 — Litiges <span class="nav-badge not_started" id="nav-badge-module4"></span></a>
+      <a href="module5.html"><span class="nav-icon">📋</span> M5 — Projets <span class="nav-badge not_started" id="nav-badge-module5"></span></a>
+    </nav>
+    <div class="sidebar-footer">Données sauvegardées localement</div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+      <div class="topbar-title">💳 Module 2 — Schémas de paiement Visa & Mastercard</div>
+      <nav class="topbar-nav">
+        <a href="module1.html">← Précédent</a>
+        <span style="color:#ccc;padding:0 4px">|</span>
+        <span style="font-size:0.8rem;color:#666">2 / 5</span>
+        <span style="color:#ccc;padding:0 4px">|</span>
+        <a href="module3.html">Suivant →</a>
+      </nav>
+    </header>
+
+    <div class="page">
+      <article class="course-content">
+
+        <h2 id="modele4">1. Le modèle à quatre parties</h2>
+        <p>Le modèle à quatre parties est la structure fondamentale des réseaux Visa et Mastercard. Les acteurs sont :</p>
+        <ul>
+          <li><strong>Porteur</strong> : détenteur de la carte, client de la banque émettrice.</li>
+          <li><strong>Banque émettrice</strong> : émet la carte, gère le compte, autorise les transactions.</li>
+          <li><strong>Commerçant</strong> : accepte le paiement via son TPE.</li>
+          <li><strong>Banque acquéreur</strong> : gère le terminal du commerçant, reçoit les transactions, reverse le paiement au commerçant.</li>
+        </ul>
+        <p>Le réseau (Visa ou Mastercard) est au centre mais n'est pas une partie à proprement parler — il fournit les règles, l'infrastructure de routing et de clearing.</p>
+
+        <h3>L'interchange</h3>
+        <p>Commission que la <strong>banque acquéreur verse à la banque émettrice</strong> pour chaque transaction. Elle compense l'émetteur pour le risque de crédit pris sur le porteur, les coûts de gestion des cartes et les bénéfices apportés au commerçant (augmentation des ventes, garantie de paiement). Mastercard ne réalise aucun profit sur l'interchange.</p>
+
+        <h3>Scheme fees</h3>
+        <p>Rémunération du réseau (Visa ou Mastercard) pour l'utilisation de son infrastructure. Facturés aux banques membres. S'ajoutent à l'interchange pour former le coût total supporté par le commerçant via son acquéreur.</p>
+
+        <div class="key-concept">
+          <h4>Flux de rémunération</h4>
+          <p>Commerçant → Acquéreur (MSC = Merchant Service Charge) → Émetteur (interchange) + Réseau (scheme fees) + Marge acquéreur</p>
+        </div>
+
+        <h2 id="routing">2. Routing des transactions</h2>
+
+        <h3>Règle GIM-UEMOA vs réseaux internationaux</h3>
+        <p>Pour une carte co-badgée GIM-Visa, la règle de routing intrarégionale prime :</p>
+        <ul>
+          <li><strong>Transaction entre deux membres GIM dans la zone UEMOA</strong> → Switch GIM-UEMOA (pas VisaNet).</li>
+          <li><strong>Transaction hors zone UEMOA</strong> → VisaNet (ou Banknet pour Mastercard).</li>
+        </ul>
+
+        <h3>BIN (Bank Identification Number)</h3>
+        <p>Les 6 premiers chiffres du PAN identifient : le réseau (Visa = commence par 4, Mastercard = par 5 ou 2), la banque émettrice, le type de produit (débit, crédit, prépayée), la zone géographique. Le BIN ou IIN est attribué par le réseau à chaque banque membre.</p>
+
+        <h2 id="iso8583">3. ISO 8583 — Format des messages</h2>
+
+        <h3>MTI (Message Type Indicator)</h3>
+        <table class="data-table">
+          <thead><tr><th>MTI</th><th>Type</th></tr></thead>
+          <tbody>
+            <tr><td><code>0100</code></td><td>Authorization Request (TPE → émetteur)</td></tr>
+            <tr><td><code>0110</code></td><td>Authorization Response (émetteur → TPE)</td></tr>
+            <tr><td><code>0200</code></td><td>Financial Transaction Request</td></tr>
+            <tr><td><code>0400</code></td><td>Reversal Request (annulation)</td></tr>
+            <tr><td><code>0800</code></td><td>Network Management Request (test connexion)</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Data Elements clés</h3>
+        <table class="data-table">
+          <thead><tr><th>DE</th><th>Contenu</th><th>Usage</th></tr></thead>
+          <tbody>
+            <tr><td><code>DE2</code></td><td>PAN (numéro de carte)</td><td>Identification porteur</td></tr>
+            <tr><td><code>DE37</code></td><td>RRN — Retrieval Reference Number</td><td>Référence unique acquéreur, clé de réconciliation et litiges</td></tr>
+            <tr><td><code>DE38</code></td><td>Code d'autorisation</td><td>Confirmé par l'émetteur si OK</td></tr>
+            <tr><td><code>DE39</code></td><td>Code de réponse</td><td>00 = approuvé, 51 = provision insuffisante…</td></tr>
+            <tr><td><code>DE52</code></td><td>PIN Data (PIN Block chiffré)</td><td>Transactions avec vérification PIN</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Codes de réponse importants</h3>
+        <table class="data-table">
+          <thead><tr><th>Code</th><th>Signification</th></tr></thead>
+          <tbody>
+            <tr><td><code>00</code></td><td>Approuvée</td></tr>
+            <tr><td><code>05</code></td><td>Transaction non permise</td></tr>
+            <tr><td><code>14</code></td><td>Numéro de carte invalide</td></tr>
+            <tr><td><code>51</code></td><td>Provision insuffisante</td></tr>
+            <tr><td><code>54</code></td><td>Carte expirée</td></tr>
+            <tr><td><code>55</code></td><td>PIN incorrect</td></tr>
+            <tr><td><code>91</code></td><td>Émetteur non joignable</td></tr>
+          </tbody>
+        </table>
+
+        <h2 id="fichiers">4. Fichiers de clearing et règlement</h2>
+
+        <h3>Visa</h3>
+        <ul>
+          <li><strong>EP (Early Processing)</strong> : fichier de clearing — détails de toutes les transactions de la journée.</li>
+          <li><strong>VSS (Visa Settlement Service)</strong> : fichier de règlement financier — solde net à régler entre banques.</li>
+        </ul>
+
+        <h3>Mastercard</h3>
+        <ul>
+          <li><strong>IP (Interchange Processing)</strong> : équivalent de l'EP Visa pour le clearing.</li>
+          <li><strong>GCMS (Global Clearing Management System)</strong> : système de clearing Mastercard.</li>
+        </ul>
+
+        <h3>GIM-UEMOA</h3>
+        <ul>
+          <li><strong>LIS (Lien Interbancaire Spécifique)</strong> : fichier de compensation quotidien produit après le cut-off.</li>
+        </ul>
+
+        <h2 id="securite">5. Authentification en ligne — 3D Secure</h2>
+        <p>Protocole d'authentification forte pour les paiements e-commerce :</p>
+        <ul>
+          <li><strong>Visa</strong> : Verified by Visa (VbV)</li>
+          <li><strong>Mastercard</strong> : Mastercard SecureCode</li>
+          <li><strong>American Express</strong> : SafeKey</li>
+        </ul>
+        <p>La version 3DS 2.0 apporte une authentification basée sur le risque (risk-based authentication) évitant la friction systématique pour les transactions à faible risque.</p>
+
+        <h2 id="delais">6. Délais de contestation porteur</h2>
+        <p>Un porteur dispose généralement de <strong>60 jours à partir de son relevé de compte</strong> pour contester une transaction et déclencher un chargeback. Au-delà, la réclamation peut être rejetée pour dépassement de délai.</p>
+
+        <div class="info-box success">
+          <p><strong>Synthèse :</strong> Acquéreur paie interchange à émetteur. EP = clearing Visa. VSS = règlement Visa. 0100 = demande d'autorisation. DE37 = RRN = clé de réconciliation. Code 51 = provision insuffisante.</p>
+        </div>
+
+      </article>
+
+      <!-- QCM -->
+      <section class="qcm-section" id="qcm-section">
+        <div class="qcm-header">
+          <h3>QCM — Module 2</h3>
+          <p>5 questions tirées aléatoirement. Score minimum pour valider : 4/5</p>
+        </div>
+        <div id="qcm-locked" class="qcm-locked">
+          <div class="lock-icon">🔒</div>
+          <p>Lis le cours avant de passer le QCM.</p>
+          <div class="countdown" id="countdown-num">45</div>
+          <p style="font-size:0.8rem;color:#999">secondes restantes</p>
+          <br>
+          <button class="btn btn-outline btn-sm" id="skip-countdown">Passer directement</button>
+        </div>
+        <div id="qcm-unlocked" class="qcm-body hidden">
+          <div class="qcm-progress-bar">
+            <div class="qcm-progress-fill" id="qcm-progress-fill" style="width:0%"></div>
+          </div>
+          <div id="qcm-questions"></div>
+          <div style="text-align:center;margin-top:20px">
+            <button class="btn btn-primary" id="qcm-submit">Valider mes réponses</button>
+          </div>
+          <div class="score-result" id="qcm-result">
+            <div class="score-circle pass" id="score-circle">
+              <span id="score-num"></span>
+            </div>
+            <h3 id="score-msg"></h3>
+            <p>Module 2 — Schémas de paiement Visa & Mastercard</p>
+            <div class="score-actions">
+              <button class="btn btn-outline" onclick="retryQCM()">🔄 Réessayer (nouvelles questions)</button>
+              <a href="../index.html" class="btn btn-primary">🏠 Retour au tableau de bord</a>
+              <a href="module3.html" class="btn btn-success">▶ Module suivant</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script src="../data/questions.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    initQCMCountdown('module2');
+  });
+</script>
+</body>
+</html>

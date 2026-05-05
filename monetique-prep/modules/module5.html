@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 5 — Gestion de projets monétiques | MonétiquePrep</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <h1>💳 MonétiquePrep</h1>
+      <div class="subtitle">Préparation Entretien Monétique</div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="../index.html"><span class="nav-icon">🏠</span> Tableau de bord</a>
+      <a href="module1.html"><span class="nav-icon">⚖️</span> M1 — GIM-UEMOA <span class="nav-badge not_started" id="nav-badge-module1"></span></a>
+      <a href="module2.html"><span class="nav-icon">💳</span> M2 — Visa & MC <span class="nav-badge not_started" id="nav-badge-module2"></span></a>
+      <a href="module3.html"><span class="nav-icon">🔐</span> M3 — Sécurité <span class="nav-badge not_started" id="nav-badge-module3"></span></a>
+      <a href="module4.html"><span class="nav-icon">⚠️</span> M4 — Litiges <span class="nav-badge not_started" id="nav-badge-module4"></span></a>
+      <a href="module5.html" class="active"><span class="nav-icon">📋</span> M5 — Projets <span class="nav-badge not_started" id="nav-badge-module5"></span></a>
+    </nav>
+    <div class="sidebar-footer">Données sauvegardées localement</div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+      <div class="topbar-title">📋 Module 5 — Gestion de projets monétiques</div>
+      <nav class="topbar-nav">
+        <a href="module4.html">← Précédent</a>
+        <span style="color:#ccc;padding:0 4px">|</span>
+        <span style="font-size:0.8rem;color:#666">5 / 5</span>
+        <span style="color:#ccc;padding:0 4px">|</span>
+        <a href="../index.html" class="disabled">Fin</a>
+      </nav>
+    </header>
+
+    <div class="page">
+      <article class="course-content">
+
+        <h2 id="certification">1. Certification GUIM — Prérequis réseau</h2>
+        <p>La <strong>certification GUIM</strong> (GIM-UEMOA Member Certification) est le prérequis absolu pour qu'une filiale bancaire puisse participer au réseau interbancaire GIM-UEMOA. Sans cette certification, aucune connexion à la plateforme interbancaire n'est possible.</p>
+
+        <p>Elle valide la conformité technique et fonctionnelle du système monétique de la filiale vis-à-vis des spécifications GIM. Le processus est itératif :</p>
+        <ol>
+          <li>Exécution d'un script de test par la filiale</li>
+          <li>Si échec → correction de l'anomalie dans le système</li>
+          <li>Ré-exécution du script</li>
+          <li>Répétition jusqu'à validation complète de tous les scripts</li>
+        </ol>
+
+        <div class="info-box">
+          <p>Autres certifications requises selon les réseaux : <strong>BIN Visa</strong> (attribué par Visa après signature accord membre) et <strong>ICA Mastercard</strong> (Interbank Card Association number, attribué par Mastercard). Ces identifiants officialisent la participation au réseau mondial.</p>
+        </div>
+
+        <h2 id="kpi">2. KPIs monétiques clés</h2>
+        <table class="data-table">
+          <thead><tr><th>KPI</th><th>Définition</th><th>Objectif / Seuil d'alerte</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Taux d'autorisation</strong></td>
+              <td>% de transactions approuvées / total demandes</td>
+              <td>Effondrement soudain → panne technique à investiguer immédiatement</td>
+            </tr>
+            <tr>
+              <td><strong>Taux de disponibilité GAB</strong></td>
+              <td>% du temps où les GAB sont opérationnels (online + cash)</td>
+              <td>Objectif standard ≥ 98%</td>
+            </tr>
+            <tr>
+              <td><strong>Taux de chargeback</strong></td>
+              <td>% chargebacks / volume total</td>
+              <td>Seuil Mastercard MATCH : 1%</td>
+            </tr>
+            <tr>
+              <td><strong>Délai de réconciliation</strong></td>
+              <td>Temps pour clôturer la réconciliation quotidienne</td>
+              <td>Avant ouverture J+1</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Taux d'autorisation anormalement bas — diagnostic</h3>
+        <p>Un effondrement soudain du taux d'autorisation est quasi-systématiquement d'origine <strong>technique</strong> :</p>
+        <ul>
+          <li>Coupure réseau entre le système d'autorisation et le switch</li>
+          <li>Panne du serveur d'autorisation</li>
+          <li>Mauvais paramétrage BIN (nouveau BIN non déclaré)</li>
+          <li>Expiration de clés cryptographiques (HSM)</li>
+        </ul>
+        <p>Action : vérifier d'abord les logs techniques avant d'analyser les causes métier (fraude, liquidité).</p>
+
+        <h2 id="mandates">3. Mandates réseau</h2>
+        <p>Les réseaux Visa et Mastercard publient des <strong>mandates</strong> — obligations techniques que tous les membres doivent implémenter avant une date imposée. Non-respect = pénalités financières.</p>
+
+        <p>Exemples historiques de mandates :</p>
+        <ul>
+          <li>Migration EMV (puce vs bande magnétique)</li>
+          <li>3D Secure 2.0 pour l'e-commerce</li>
+          <li>Tokenisation pour les paiements mobiles et e-commerce</li>
+          <li>PCI-DSS compliance</li>
+        </ul>
+
+        <div class="info-box warning">
+          <p>Suivre le calendrier des mandates est une responsabilité opérationnelle critique. Un mandate manqué peut entraîner des pénalités de plusieurs milliers de dollars par mois de retard.</p>
+        </div>
+
+        <h2 id="migration">4. Migration core banking — Gestion des risques</h2>
+
+        <h3>Action prioritaire avant bascule en production</h3>
+        <p>Avant toute migration de core banking, deux actions sont absolument critiques :</p>
+        <ol>
+          <li><strong>Sauvegarde complète</strong> de l'ensemble des données et paramètres monétiques</li>
+          <li><strong>Tests de régression monétiques</strong> : valider que toutes les fonctions critiques (autorisations, compensation, gestion des cartes, GAB) fonctionnent correctement sur le nouveau système</li>
+        </ol>
+
+        <h3>Matrice des risques — exemple</h3>
+        <table class="data-table">
+          <thead><tr><th>Risque</th><th>Probabilité</th><th>Impact</th><th>Mitigation</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Indisponibilité réseau GIM/Visa au go-live</td>
+              <td>Faible</td>
+              <td>Très élevé</td>
+              <td>Plan de continuité, mode dégradé offline</td>
+            </tr>
+            <tr>
+              <td>Incompatibilité paramétrage BIN nouveau core</td>
+              <td>Moyenne</td>
+              <td>Élevé</td>
+              <td>Tests de régression exhaustifs</td>
+            </tr>
+            <tr>
+              <td>Perte de données cartes</td>
+              <td>Très faible</td>
+              <td>Catastrophique</td>
+              <td>Sauvegarde + DRP testé</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2 id="gab">5. Gestion du parc GAB</h2>
+
+        <h3>Taux de disponibilité ≥ 98%</h3>
+        <p>Un GAB non disponible = perte de revenus (frais de retrait) + dégradation expérience client + risque de dépassement SLA réseau. Les causes d'indisponibilité :</p>
+        <ul>
+          <li>Panne matérielle (lecteur carte, distributeur billets)</li>
+          <li>Rupture de cash (GAB vide)</li>
+          <li>Problème de connectivité réseau</li>
+          <li>Mise à jour logicielle mal planifiée</li>
+        </ul>
+
+        <h3>Surveillance en temps réel</h3>
+        <p>Utiliser le taux d'autorisation par terminal (TPE/GAB) pour détecter les pannes individuelles. Un terminal avec 0% de taux d'approbation depuis X minutes = alerte automatique.</p>
+
+        <div class="info-box success">
+          <p><strong>Synthèse finale :</strong> GUIM = prérequis connexion GIM. Taux d'autorisation effondré → panne technique avant tout. Mandate = obligation réseau avec délai. Migration = sauvegarde + tests de régression. GAB ≥ 98% disponibilité. Taux chargeback &gt;1% → MATCH Mastercard.</p>
+        </div>
+
+      </article>
+
+      <!-- QCM -->
+      <section class="qcm-section" id="qcm-section">
+        <div class="qcm-header">
+          <h3>QCM — Module 5</h3>
+          <p>5 questions tirées aléatoirement. Score minimum pour valider : 4/5</p>
+        </div>
+        <div id="qcm-locked" class="qcm-locked">
+          <div class="lock-icon">🔒</div>
+          <p>Lis le cours avant de passer le QCM.</p>
+          <div class="countdown" id="countdown-num">45</div>
+          <p style="font-size:0.8rem;color:#999">secondes restantes</p>
+          <br>
+          <button class="btn btn-outline btn-sm" id="skip-countdown">Passer directement</button>
+        </div>
+        <div id="qcm-unlocked" class="qcm-body hidden">
+          <div class="qcm-progress-bar">
+            <div class="qcm-progress-fill" id="qcm-progress-fill" style="width:0%"></div>
+          </div>
+          <div id="qcm-questions"></div>
+          <div style="text-align:center;margin-top:20px">
+            <button class="btn btn-primary" id="qcm-submit">Valider mes réponses</button>
+          </div>
+          <div class="score-result" id="qcm-result">
+            <div class="score-circle pass" id="score-circle">
+              <span id="score-num"></span>
+            </div>
+            <h3 id="score-msg"></h3>
+            <p>Module 5 — Gestion de projets monétiques</p>
+            <div class="score-actions">
+              <button class="btn btn-outline" onclick="retryQCM()">🔄 Réessayer (nouvelles questions)</button>
+              <a href="../index.html" class="btn btn-success">🏆 Tableau de bord final</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script src="../data/questions.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    initQCMCountdown('module5');
+  });
+</script>
+</body>
+</html>

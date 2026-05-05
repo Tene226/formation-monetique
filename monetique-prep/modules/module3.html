@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 3 — Sécurité monétique & PCI-DSS | MonétiquePrep</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <h1>💳 MonétiquePrep</h1>
+      <div class="subtitle">Préparation Entretien Monétique</div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="../index.html"><span class="nav-icon">🏠</span> Tableau de bord</a>
+      <a href="module1.html"><span class="nav-icon">⚖️</span> M1 — GIM-UEMOA <span class="nav-badge not_started" id="nav-badge-module1"></span></a>
+      <a href="module2.html"><span class="nav-icon">💳</span> M2 — Visa & MC <span class="nav-badge not_started" id="nav-badge-module2"></span></a>
+      <a href="module3.html" class="active"><span class="nav-icon">🔐</span> M3 — Sécurité <span class="nav-badge not_started" id="nav-badge-module3"></span></a>
+      <a href="module4.html"><span class="nav-icon">⚠️</span> M4 — Litiges <span class="nav-badge not_started" id="nav-badge-module4"></span></a>
+      <a href="module5.html"><span class="nav-icon">📋</span> M5 — Projets <span class="nav-badge not_started" id="nav-badge-module5"></span></a>
+    </nav>
+    <div class="sidebar-footer">Données sauvegardées localement</div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+      <div class="topbar-title">🔐 Module 3 — Sécurité monétique & PCI-DSS</div>
+      <nav class="topbar-nav">
+        <a href="module2.html">← Précédent</a>
+        <span style="color:#ccc;padding:0 4px">|</span>
+        <span style="font-size:0.8rem;color:#666">3 / 5</span>
+        <span style="color:#ccc;padding:0 4px">|</span>
+        <a href="module4.html">Suivant →</a>
+      </nav>
+    </header>
+
+    <div class="page">
+      <article class="course-content">
+
+        <h2 id="pcidss">1. PCI-DSS — Présentation générale</h2>
+        <p>Le <strong>PCI-DSS (Payment Card Industry Data Security Standard)</strong> est la norme mondiale de sécurité des données de paiement. Créé le 15 décembre 2004 par les 5 grands réseaux fondateurs : <strong>Visa, Mastercard, American Express, Discover et JCB</strong>, il est géré par le <strong>PCI Security Standards Council (PCI-SSC)</strong>.</p>
+
+        <p>Le GIM-UEMOA a obtenu la certification <strong>PCI-DSS 4.0.1</strong> en 2024 — la version la plus récente et exigeante de la norme.</p>
+
+        <h3>Structure : 12 exigences en 6 objectifs</h3>
+        <table class="data-table">
+          <thead><tr><th>Objectif</th><th>Exigences</th></tr></thead>
+          <tbody>
+            <tr><td>1. Réseau sécurisé</td><td>1. Firewall — 2. Pas de mots de passe par défaut</td></tr>
+            <tr><td>2. Protection des données porteur</td><td>3. Protéger les données stockées — 4. Chiffrer les transmissions</td></tr>
+            <tr><td>3. Gestion des vulnérabilités</td><td>5. Antivirus — 6. Systèmes sécurisés</td></tr>
+            <tr><td>4. Contrôle des accès</td><td>7. Accès limité au besoin — 8. ID unique — 9. Accès physique</td></tr>
+            <tr><td>5. Surveillance et tests</td><td>10. Logs et monitoring — 11. Tests de sécurité</td></tr>
+            <tr><td>6. Politique de sécurité</td><td>12. Politique de sécurité de l'information</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Niveaux d'audit PCI-DSS</h3>
+        <table class="data-table">
+          <thead><tr><th>Niveau</th><th>Volume annuel</th><th>Exigence</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Niveau 1</strong></td><td>&gt; 6 millions de transactions</td><td>Audit QSA externe → ROC + AOC</td></tr>
+            <tr><td><strong>Niveau 2</strong></td><td>1 à 6 millions</td><td>SAQ auto-rempli annuel</td></tr>
+            <tr><td><strong>Niveau 3</strong></td><td>20 000 à 1 million (e-commerce)</td><td>SAQ annuel</td></tr>
+            <tr><td><strong>Niveau 4</strong></td><td>&lt; 20 000 transactions</td><td>SAQ annuel</td></tr>
+          </tbody>
+        </table>
+
+        <div class="info-box">
+          <p><strong>QSA</strong> = Qualified Security Assessor. <strong>ROC</strong> = Report on Compliance. <strong>AOC</strong> = Attestation of Compliance. <strong>SAQ</strong> = Self-Assessment Questionnaire.</p>
+        </div>
+
+        <h2 id="donnees">2. Données à protéger — Ce qu'on peut stocker</h2>
+
+        <div class="info-box error">
+          <p><strong>JAMAIS stocker après autorisation :</strong> CVV/CVC, contenu complet de la piste magnétique (Track data), PIN Block. Ces données sensibles ne doivent même pas transiter en clair dans les systèmes.</p>
+        </div>
+
+        <div class="info-box success">
+          <p><strong>Peut être stocké avec protection :</strong> PAN (numéro de carte) — mais doit être tronqué (ex: **** **** **** 1234), haché, chiffré ou tokenisé. Date d'expiration (avec précaution). Nom du porteur.</p>
+        </div>
+
+        <h2 id="hsm">3. HSM — Hardware Security Module</h2>
+        <p>Le HSM est un <strong>dispositif physique inviolable certifié PCI-PTS</strong> qui stocke et utilise les clés cryptographiques sans jamais les exposer en clair. Les opérations cryptographiques (chiffrement PIN, génération de cryptogrammes EMV, diversification de clés) s'exécutent entièrement à l'intérieur du HSM.</p>
+        <p>Indispensable pour : chiffrement des PIN entre TPE et système d'autorisation, gestion des Master Keys et Session Keys des TPE, personnalisation des cartes EMV.</p>
+
+        <h2 id="pinblock">4. PIN Block et format ISO-0</h2>
+        <p>Le <strong>PIN Block</strong> est la représentation chiffrée du code PIN du porteur. Format le plus courant : <strong>ISO-0 (Format 0)</strong>.</p>
+
+        <p>Construction du PIN Block ISO-0 :</p>
+        <ol>
+          <li>Construire un bloc PIN : <code>0 | longueur_PIN | PIN | padding (F)</code></li>
+          <li>Construire un bloc PAN : <code>0000 | 12 chiffres centraux du PAN</code></li>
+          <li>PIN Block = Bloc PIN <strong>XOR</strong> Bloc PAN</li>
+        </ol>
+
+        <div class="info-box">
+          <p>L'XOR avec les 12 chiffres centraux du PAN <strong>lie cryptographiquement</strong> le PIN à la carte spécifique. Un PIN Block capturé ne peut pas être réutilisé sur une autre carte (protection anti-replay).</p>
+        </div>
+
+        <p>Le PIN Block chiffré est transmis dans le <strong>Data Element DE52</strong> du message ISO 8583, chiffré avec la session key du TPE dérivée de la Master Key injectée dans le HSM.</p>
+
+        <h2 id="emv">5. EMV et liability shift</h2>
+        <p><strong>EMV</strong> (Europay Mastercard Visa) est la norme des cartes à puce. La puce génère un <strong>cryptogramme dynamique (iARQC — Authorization Request Cryptogram)</strong> unique pour chaque transaction, rendant la copie frauduleuse quasi-impossible (contrairement à la bande magnétique statique).</p>
+
+        <h3>Règle du liability shift</h3>
+        <p>En cas de fraude, la responsabilité financière se transfère vers la partie <strong>non-compliant EMV</strong> :</p>
+        <ul>
+          <li>Commerçant sans terminal puce (fallback sur bande magnétique) → <strong>acquéreur assume la perte</strong>.</li>
+          <li>Carte sans puce → <strong>émetteur assume la perte</strong>.</li>
+        </ul>
+
+        <div class="info-box success">
+          <p><strong>Synthèse PCI-DSS :</strong> 12 exigences / 6 objectifs. Niveau 1 (&gt;6M tx) = QSA + ROC. CVV/Track/PIN jamais stockés. HSM = coffre-fort cryptographique. ISO-0 = PIN XOR 12 chiffres PAN. iARQC = cryptogramme dynamique EMV.</p>
+        </div>
+
+      </article>
+
+      <!-- QCM -->
+      <section class="qcm-section" id="qcm-section">
+        <div class="qcm-header">
+          <h3>QCM — Module 3</h3>
+          <p>5 questions tirées aléatoirement. Score minimum pour valider : 4/5</p>
+        </div>
+        <div id="qcm-locked" class="qcm-locked">
+          <div class="lock-icon">🔒</div>
+          <p>Lis le cours avant de passer le QCM.</p>
+          <div class="countdown" id="countdown-num">45</div>
+          <p style="font-size:0.8rem;color:#999">secondes restantes</p>
+          <br>
+          <button class="btn btn-outline btn-sm" id="skip-countdown">Passer directement</button>
+        </div>
+        <div id="qcm-unlocked" class="qcm-body hidden">
+          <div class="qcm-progress-bar">
+            <div class="qcm-progress-fill" id="qcm-progress-fill" style="width:0%"></div>
+          </div>
+          <div id="qcm-questions"></div>
+          <div style="text-align:center;margin-top:20px">
+            <button class="btn btn-primary" id="qcm-submit">Valider mes réponses</button>
+          </div>
+          <div class="score-result" id="qcm-result">
+            <div class="score-circle pass" id="score-circle">
+              <span id="score-num"></span>
+            </div>
+            <h3 id="score-msg"></h3>
+            <p>Module 3 — Sécurité monétique & PCI-DSS</p>
+            <div class="score-actions">
+              <button class="btn btn-outline" onclick="retryQCM()">🔄 Réessayer (nouvelles questions)</button>
+              <a href="../index.html" class="btn btn-primary">🏠 Retour au tableau de bord</a>
+              <a href="module4.html" class="btn btn-success">▶ Module suivant</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script src="../data/questions.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    initQCMCountdown('module3');
+  });
+</script>
+</body>
+</html>

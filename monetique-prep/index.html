@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MonétiquePrep — Préparation Entretien Monétique</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <h1>💳 MonétiquePrep</h1>
+      <div class="subtitle">Préparation Entretien Monétique</div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="active">
+        <span class="nav-icon">🏠</span> Tableau de bord
+      </a>
+      <a href="modules/module1.html">
+        <span class="nav-icon">⚖️</span> M1 — GIM-UEMOA
+        <span class="nav-badge not_started" id="nav-badge-module1"></span>
+      </a>
+      <a href="modules/module2.html">
+        <span class="nav-icon">💳</span> M2 — Visa & MC
+        <span class="nav-badge not_started" id="nav-badge-module2"></span>
+      </a>
+      <a href="modules/module3.html">
+        <span class="nav-icon">🔐</span> M3 — Sécurité
+        <span class="nav-badge not_started" id="nav-badge-module3"></span>
+      </a>
+      <a href="modules/module4.html">
+        <span class="nav-icon">⚠️</span> M4 — Litiges
+        <span class="nav-badge not_started" id="nav-badge-module4"></span>
+      </a>
+      <a href="modules/module5.html">
+        <span class="nav-icon">📋</span> M5 — Projets
+        <span class="nav-badge not_started" id="nav-badge-module5"></span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      Données sauvegardées localement
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+    <header class="topbar">
+      <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+      <div class="topbar-title">Tableau de bord</div>
+      <div></div>
+    </header>
+
+    <div class="page">
+
+      <!-- HERO -->
+      <section class="hero">
+        <h2>Bienvenue sur MonétiquePrep</h2>
+        <p>5 modules de cours + QCM pour maîtriser la monétique UEMOA avant ton entretien.</p>
+        <div class="progress-bar-container">
+          <div class="progress-label">
+            <span>Progression globale</span>
+            <span id="global-progress-text">0 / 5 modules complétés</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="global-progress-fill" style="width:0%"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-num" id="stat-completed">0</div>
+          <div class="stat-label">Modules validés</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="stat-attempts">0</div>
+          <div class="stat-label">QCM passés</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="stat-best">—</div>
+          <div class="stat-label">Meilleur score</div>
+        </div>
+      </div>
+
+      <!-- MODULES -->
+      <div class="section-title">Modules de formation</div>
+
+      <div class="modules-grid">
+
+        <!-- MODULE 1 -->
+        <div class="module-card not_started" id="card-module1">
+          <div class="card-header">
+            <div class="card-num">⚖️ Module 1</div>
+            <span class="badge not_started" id="badge-module1">Non commencé</span>
+          </div>
+          <div class="card-title">Réglementation GIM-UEMOA / BCEAO</div>
+          <div class="card-meta">
+            <div class="card-score" id="score-module1">Pas encore tenté</div>
+            <div class="card-attempts" id="attempts-module1"></div>
+          </div>
+          <div class="card-footer">
+            <a href="modules/module1.html" class="btn btn-primary btn-full" id="btn-module1">Commencer</a>
+          </div>
+        </div>
+
+        <!-- MODULE 2 -->
+        <div class="module-card not_started" id="card-module2">
+          <div class="card-header">
+            <div class="card-num">💳 Module 2</div>
+            <span class="badge not_started" id="badge-module2">Non commencé</span>
+          </div>
+          <div class="card-title">Schémas de paiement Visa & Mastercard</div>
+          <div class="card-meta">
+            <div class="card-score" id="score-module2">Pas encore tenté</div>
+            <div class="card-attempts" id="attempts-module2"></div>
+          </div>
+          <div class="card-footer">
+            <a href="modules/module2.html" class="btn btn-primary btn-full" id="btn-module2">Commencer</a>
+          </div>
+        </div>
+
+        <!-- MODULE 3 -->
+        <div class="module-card not_started" id="card-module3">
+          <div class="card-header">
+            <div class="card-num">🔐 Module 3</div>
+            <span class="badge not_started" id="badge-module3">Non commencé</span>
+          </div>
+          <div class="card-title">Sécurité monétique & PCI-DSS</div>
+          <div class="card-meta">
+            <div class="card-score" id="score-module3">Pas encore tenté</div>
+            <div class="card-attempts" id="attempts-module3"></div>
+          </div>
+          <div class="card-footer">
+            <a href="modules/module3.html" class="btn btn-primary btn-full" id="btn-module3">Commencer</a>
+          </div>
+        </div>
+
+        <!-- MODULE 4 -->
+        <div class="module-card not_started" id="card-module4">
+          <div class="card-header">
+            <div class="card-num">⚠️ Module 4</div>
+            <span class="badge not_started" id="badge-module4">Non commencé</span>
+          </div>
+          <div class="card-title">Gestion des litiges & Chargeback</div>
+          <div class="card-meta">
+            <div class="card-score" id="score-module4">Pas encore tenté</div>
+            <div class="card-attempts" id="attempts-module4"></div>
+          </div>
+          <div class="card-footer">
+            <a href="modules/module4.html" class="btn btn-primary btn-full" id="btn-module4">Commencer</a>
+          </div>
+        </div>
+
+        <!-- MODULE 5 -->
+        <div class="module-card not_started" id="card-module5">
+          <div class="card-header">
+            <div class="card-num">📋 Module 5</div>
+            <span class="badge not_started" id="badge-module5">Non commencé</span>
+          </div>
+          <div class="card-title">Gestion de projets monétiques</div>
+          <div class="card-meta">
+            <div class="card-score" id="score-module5">Pas encore tenté</div>
+            <div class="card-attempts" id="attempts-module5"></div>
+          </div>
+          <div class="card-footer">
+            <a href="modules/module5.html" class="btn btn-primary btn-full" id="btn-module5">Commencer</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RESET -->
+      <div class="reset-section">
+        <p>Réinitialiser efface tous les scores et statuts. Action irréversible.</p>
+        <button class="btn btn-danger btn-sm" id="reset-btn">Réinitialiser ma progression</button>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="data/questions.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

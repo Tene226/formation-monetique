@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Recurse \"c:\\\\Users\\\\arnol\\\\Desktop\\\\CLAUDE\\\\FORMATION\" | Where-Object { !$_.PSIsContainer } | Select-Object @{N='Fichier';E={$_.FullName.Replace\\('c:\\\\Users\\\\arnol\\\\Desktop\\\\CLAUDE\\\\FORMATION\\\\',''\\)}}, @{N='Ko';E={[math]::Round\\($_.Length/1KB,1\\)}} | Format-Table -AutoSize)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}

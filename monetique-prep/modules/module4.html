@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 4 — Gestion des litiges & Chargeback | MonétiquePrep</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <h1>💳 MonétiquePrep</h1>
+      <div class="subtitle">Préparation Entretien Monétique</div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="../index.html"><span class="nav-icon">🏠</span> Tableau de bord</a>
+      <a href="module1.html"><span class="nav-icon">⚖️</span> M1 — GIM-UEMOA <span class="nav-badge not_started" id="nav-badge-module1"></span></a>
+      <a href="module2.html"><span class="nav-icon">💳</span> M2 — Visa & MC <span class="nav-badge not_started" id="nav-badge-module2"></span></a>
+      <a href="module3.html"><span class="nav-icon">🔐</span> M3 — Sécurité <span class="nav-badge not_started" id="nav-badge-module3"></span></a>
+      <a href="module4.html" class="active"><span class="nav-icon">⚠️</span> M4 — Litiges <span class="nav-badge not_started" id="nav-badge-module4"></span></a>
+      <a href="module5.html"><span class="nav-icon">📋</span> M5 — Projets <span class="nav-badge not_started" id="nav-badge-module5"></span></a>
+    </nav>
+    <div class="sidebar-footer">Données sauvegardées localement</div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+      <div class="topbar-title">⚠️ Module 4 — Gestion des litiges & Chargeback</div>
+      <nav class="topbar-nav">
+        <a href="module3.html">← Précédent</a>
+        <span style="color:#ccc;padding:0 4px">|</span>
+        <span style="font-size:0.8rem;color:#666">4 / 5</span>
+        <span style="color:#ccc;padding:0 4px">|</span>
+        <a href="module5.html">Suivant →</a>
+      </nav>
+    </header>
+
+    <div class="page">
+      <article class="course-content">
+
+        <h2 id="chargeback">1. Le chargeback — Définition et processus</h2>
+        <p>Le <strong>chargeback</strong> est la procédure formelle permettant à un porteur de contester une transaction via sa banque émettrice. La banque émettrice débite le montant contesté de la banque acquéreur via le réseau (Visa, Mastercard ou GIM).</p>
+
+        <div class="key-concept">
+          <h4>Qui initie le chargeback ?</h4>
+          <p>C'est la <strong>banque émettrice</strong> qui initie le chargeback, après réception et validation de la réclamation du porteur. Le porteur ne contacte pas directement l'acquéreur — il passe par sa banque.</p>
+        </div>
+
+        <h3>Étapes du processus de litige</h3>
+        <ol>
+          <li><strong>Réclamation porteur</strong> → banque émettrice (dans les 60 jours après le relevé)</li>
+          <li><strong>Retrieval Request</strong> (optionnel) : l'émetteur demande les justificatifs à l'acquéreur avant d'initier un chargeback formel</li>
+          <li><strong>Chargeback</strong> : l'émetteur débite l'acquéreur du montant contesté</li>
+          <li><strong>Représentation</strong> : l'acquéreur conteste et renvoie des preuves (délai : 30 à 45 jours selon réseau)</li>
+          <li><strong>Pre-arbitration</strong> : second round d'échanges</li>
+          <li><strong>Arbitrage</strong> : décision finale du réseau Visa/Mastercard, avec frais (~500 USD) à la charge du perdant</li>
+        </ol>
+
+        <h2 id="motifs">2. Motifs de chargeback</h2>
+        <table class="data-table">
+          <thead><tr><th>Catégorie</th><th>Motif</th><th>Preuve de défense</th></tr></thead>
+          <tbody>
+            <tr><td>Fraude</td><td>Transaction non autorisée</td><td>Ticket signé + log PIN (preuve présence physique)</td></tr>
+            <tr><td>Fraude</td><td>Fraude sur identité</td><td>Données EMV, logs d'authentification</td></tr>
+            <tr><td>Service client</td><td>Marchandise/service non reçu</td><td>Preuve de livraison, confirmation de prestation</td></tr>
+            <tr><td>Service client</td><td>Double débit</td><td>Logs de télécollecte, preuve de non-duplication</td></tr>
+            <tr><td>Autorisation</td><td>Absence d'autorisation</td><td>Log d'autorisation positive</td></tr>
+            <tr><td>Traitement</td><td>Erreur de montant</td><td>Ticket original du TPE</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Double débit</h3>
+        <p>Même transaction présentée deux fois à la compensation → deux débits sur le compte porteur. Causes possibles : bug de télécollecte, double soumission back-office. La preuve est dans les logs de clearing.</p>
+
+        <h2 id="reconciliation">3. Réconciliation et suspens</h2>
+        <p>La réconciliation consiste à comparer les transactions internes (système bancaire) avec les fichiers réseau (LIS, EP Visa, IP Mastercard) pour s'assurer qu'aucune transaction ne manque et que les montants correspondent.</p>
+
+        <div class="info-box error">
+          <p><strong>Suspens DÉBITEUR :</strong> Le réseau a une transaction que ton système interne n'a pas → <strong>charge potentielle non comptabilisée</strong>. Priorité maximale d'investigation — risque de perte financière.</p>
+        </div>
+
+        <div class="info-box warning">
+          <p><strong>Suspens CRÉDITEUR :</strong> Ton système interne a une transaction absente du fichier réseau → <strong>produit potentiel non encaissé</strong>. À investiguer pour s'assurer que le règlement interviendra.</p>
+        </div>
+
+        <h3>Retrieval Request</h3>
+        <p>Demande formelle de l'émetteur à l'acquéreur pour obtenir les justificatifs d'une transaction (ticket signé, logs TPE). Étape souvent préalable au chargeback formel. L'acquéreur doit répondre dans les délais imposés par le réseau. Absence de réponse = acceptation automatique du chargeback.</p>
+
+        <h2 id="preuves">4. Preuves de défense</h2>
+
+        <h3>Pour transaction non autorisée sur achat physique</h3>
+        <p>Preuve la plus solide : <strong>ticket de caisse signé + log de vérification PIN (HSM)</strong>. Cela prouve simultanément la présence physique du porteur (ticket signé) et l'authentification réussie (PIN validé par le HSM). Une transaction EMV avec PIN réussi est pratiquement indéfendable par le porteur.</p>
+
+        <h3>Pour marchandise non reçue</h3>
+        <p>Preuve de livraison physique (bon signé transporteur) ou confirmation de prestation de service. Pour les achats en ligne, les logs de connexion, adresses IP et accusés de réception peuvent aider.</p>
+
+        <h2 id="programmes">5. Programmes de surveillance réseau</h2>
+
+        <h3>Mastercard MATCH</h3>
+        <p>Déclenché quand le taux de chargeback d'un commerçant dépasse <strong>1% du volume mensuel</strong>. La banque acquéreur peut perdre le droit d'acquérir pour ce commerçant si le taux n'est pas ramené sous le seuil.</p>
+
+        <h3>Décision n°042-01-13 BCEAO</h3>
+        <p>Cellules de Gestion des Incidents dans chaque banque — responsables de la remontée et traitement des incidents affectant les systèmes de paiement, y compris les fraudes systémiques.</p>
+
+        <div class="info-box success">
+          <p><strong>Synthèse :</strong> Émetteur initie le chargeback. 60 jours porteur pour contester. 30-45 jours acquéreur pour représentation. Suspens débiteur = charge non comptabilisée (priorité). Suspens créditeur = produit non encaissé. Arbitrage = décision finale réseau (~500 USD frais perdant).</p>
+        </div>
+
+      </article>
+
+      <!-- QCM -->
+      <section class="qcm-section" id="qcm-section">
+        <div class="qcm-header">
+          <h3>QCM — Module 4</h3>
+          <p>5 questions tirées aléatoirement. Score minimum pour valider : 4/5</p>
+        </div>
+        <div id="qcm-locked" class="qcm-locked">
+          <div class="lock-icon">🔒</div>
+          <p>Lis le cours avant de passer le QCM.</p>
+          <div class="countdown" id="countdown-num">45</div>
+          <p style="font-size:0.8rem;color:#999">secondes restantes</p>
+          <br>
+          <button class="btn btn-outline btn-sm" id="skip-countdown">Passer directement</button>
+        </div>
+        <div id="qcm-unlocked" class="qcm-body hidden">
+          <div class="qcm-progress-bar">
+            <div class="qcm-progress-fill" id="qcm-progress-fill" style="width:0%"></div>
+          </div>
+          <div id="qcm-questions"></div>
+          <div style="text-align:center;margin-top:20px">
+            <button class="btn btn-primary" id="qcm-submit">Valider mes réponses</button>
+          </div>
+          <div class="score-result" id="qcm-result">
+            <div class="score-circle pass" id="score-circle">
+              <span id="score-num"></span>
+            </div>
+            <h3 id="score-msg"></h3>
+            <p>Module 4 — Gestion des litiges & Chargeback</p>
+            <div class="score-actions">
+              <button class="btn btn-outline" onclick="retryQCM()">🔄 Réessayer (nouvelles questions)</button>
+              <a href="../index.html" class="btn btn-primary">🏠 Retour au tableau de bord</a>
+              <a href="module5.html" class="btn btn-success">▶ Module suivant</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script src="../data/questions.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    initQCMCountdown('module4');
+  });
+</script>
+</body>
+</html>

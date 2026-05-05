@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1 — Réglementation GIM-UEMOA / BCEAO | MonétiquePrep</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <h1>💳 MonétiquePrep</h1>
+      <div class="subtitle">Préparation Entretien Monétique</div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="../index.html"><span class="nav-icon">🏠</span> Tableau de bord</a>
+      <a href="module1.html" class="active"><span class="nav-icon">⚖️</span> M1 — GIM-UEMOA <span class="nav-badge not_started" id="nav-badge-module1"></span></a>
+      <a href="module2.html"><span class="nav-icon">💳</span> M2 — Visa & MC <span class="nav-badge not_started" id="nav-badge-module2"></span></a>
+      <a href="module3.html"><span class="nav-icon">🔐</span> M3 — Sécurité <span class="nav-badge not_started" id="nav-badge-module3"></span></a>
+      <a href="module4.html"><span class="nav-icon">⚠️</span> M4 — Litiges <span class="nav-badge not_started" id="nav-badge-module4"></span></a>
+      <a href="module5.html"><span class="nav-icon">📋</span> M5 — Projets <span class="nav-badge not_started" id="nav-badge-module5"></span></a>
+    </nav>
+    <div class="sidebar-footer">Données sauvegardées localement</div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+      <div class="topbar-title">⚖️ Module 1 — Réglementation GIM-UEMOA / BCEAO</div>
+      <nav class="topbar-nav">
+        <a href="../index.html">← Accueil</a>
+        <span style="color:#ccc;padding:0 4px">|</span>
+        <span style="font-size:0.8rem;color:#666">1 / 5</span>
+        <span style="color:#ccc;padding:0 4px">|</span>
+        <a href="module2.html">Suivant →</a>
+      </nav>
+    </header>
+
+    <div class="page">
+
+      <!-- COURSE CONTENT -->
+      <article class="course-content">
+
+        <h2 id="intro">1. Contexte et création du GIM-UEMOA</h2>
+        <p>Le <strong>GIM-UEMOA</strong> (Groupement Interbancaire Monétique de l'Union Économique et Monétaire Ouest Africaine) est l'infrastructure commune de paiement électronique des 8 pays de la zone UEMOA : Bénin, Burkina Faso, Côte d'Ivoire, Guinée-Bissau, Mali, Niger, Sénégal et Togo.</p>
+        <p>Fondé en <strong>2003</strong>, le GIM-UEMOA est opérationnel depuis le <strong>15 juin 2007</strong>. La BCEAO en est actionnaire majoritaire depuis <strong>décembre 2009</strong>, signalant l'importance stratégique de cette infrastructure pour la politique monétaire régionale.</p>
+
+        <div class="key-concept">
+          <h4>Chiffres clés</h4>
+          <p>Après l'application de la Décision n°31 (2015–2018) : <strong>+55% d'activité</strong> — 95 millions d'opérations pour <strong>10 160 milliards de FCFA</strong> de volume traité.</p>
+        </div>
+
+        <h2 id="textes">2. Cadre réglementaire fondateur</h2>
+
+        <h3>Règlement n°15/2002/CM/UEMOA</h3>
+        <p>Texte fondateur du 19 septembre 2002. Il pose quatre piliers essentiels :</p>
+        <ul>
+          <li><strong>Irrévocabilité des transactions</strong> : une transaction validée ne peut plus être annulée unilatéralement.</li>
+          <li><strong>Dérogation au droit de la faillite (règle du zéro heure)</strong> : la défaillance d'un participant n'affecte pas la validité des transactions déjà compensées.</li>
+          <li><strong>Admission de l'écrit électronique</strong> comme preuve légale équivalente à l'écrit papier.</li>
+          <li><strong>Compensation multilatérale</strong> : les soldes bilatéraux sont agrégés en une position nette unique par participant.</li>
+        </ul>
+
+        <h3>Décision n°31/2015/CM/UMOA</h3>
+        <p>Adoptée le 29 septembre 2015. Deux impacts majeurs :</p>
+        <ul>
+          <li>Obligation de règlement en FCFA pour toutes les transactions intrarégionales.</li>
+          <li>Réduction des frais de retrait interbancaires, ayant directement généré la hausse de +55% de l'activité entre 2017 et 2018.</li>
+        </ul>
+
+        <h3>Instruction n°008-05-2015 de la BCEAO</h3>
+        <p>Du 21 mai 2015. Régit les conditions et modalités d'exercice des activités des <strong>émetteurs de monnaie électronique</strong> (Mobile Money, cartes prépayées) dans tous les États membres de l'UMOA. C'est la base réglementaire du Mobile Money en zone UEMOA.</p>
+
+        <h3>Décision n°042-01-13 du 15 janvier 2013</h3>
+        <p>A institué des <strong>Cellules de Gestion des Incidents des Systèmes de Paiement</strong> dans chaque banque membre. Ces cellules sont responsables de la remontée et du traitement des incidents significatifs affectant les systèmes de paiement.</p>
+
+        <h2 id="services">3. Services du GIM-UEMOA</h2>
+
+        <h3>Switch interbancaire</h3>
+        <p>Le switch GIM-UEMOA route les transactions entre banques membres. Il identifie la banque émettrice via le <strong>BIN (Bank Identification Number)</strong> — les 6 premiers chiffres du PAN (numéro de carte). Ces 6 chiffres permettent au switch de router instantanément la demande d'autorisation vers l'émetteur correct.</p>
+
+        <h3>Fichier LIS (Lien Interbancaire Spécifique)</h3>
+        <p>Fichier de compensation produit après le <strong>cut-off quotidien</strong>. Il liste toutes les transactions interbancaires de la journée et sert de base à la réconciliation comptable entre banques membres. À distinguer des fichiers EP/VSS pour les réseaux Visa/Mastercard.</p>
+
+        <h3>Services par délégation</h3>
+        <table class="data-table">
+          <thead><tr><th>Type</th><th>Pour qui</th><th>Cas d'usage</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Délégation permanente</strong></td><td>Banques sans système monétique propre</td><td>Le GIM gère l'intégralité des services monétiques</td></tr>
+            <tr><td><strong>Délégation temporaire</strong></td><td>Banques avec leur propre système</td><td>Secours en cas de panne ou complément de service</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Acquisition Commerçant Unique (ACU)</h3>
+        <p>Adoptée en 2009. Le GIM centralise l'acquisition et la gestion des TPE interbancaires : placement des terminaux, maintenance, traitement des flux de paiement. Les banques conservent la relation commerciale avec leurs commerçants. Avantage : mutualisation des coûts d'infrastructure.</p>
+
+        <div class="info-box warning">
+          <p><strong>Point entretien clé :</strong> Savoir distinguer le rôle du GIM (infrastructure régionale) des rôles de Visa/Mastercard (réseaux internationaux). Une transaction entre deux membres GIM dans la zone UEMOA passe par le switch GIM, pas par VisaNet.</p>
+        </div>
+
+        <h2 id="bceao">4. Rôle de la BCEAO</h2>
+        <p>La BCEAO exerce une double mission :</p>
+        <ul>
+          <li><strong>Actionnaire majoritaire</strong> du GIM-UEMOA depuis 2009.</li>
+          <li><strong>Régulateur et surveillant</strong> des systèmes de paiement de la zone UEMOA, via son département spécialisé.</li>
+        </ul>
+        <p>Elle publie les textes réglementaires (Instructions, Décisions) qui structurent l'activité de tous les acteurs monétiques de la zone.</p>
+
+        <div class="info-box success">
+          <p><strong>Synthèse mémorisation :</strong> 2003 (création) → 2007 (opérationnel) → 2009 (BCEAO majoritaire) → 2015 (Décision n°31 + Instruction Monnaie élec.) → 2017-18 (+55% activité).</p>
+        </div>
+
+      </article>
+
+      <!-- QCM SECTION -->
+      <section class="qcm-section" id="qcm-section">
+        <div class="qcm-header">
+          <h3>QCM — Module 1</h3>
+          <p>5 questions tirées aléatoirement. Score minimum pour valider : 4/5</p>
+        </div>
+
+        <!-- LOCKED STATE -->
+        <div id="qcm-locked" class="qcm-locked">
+          <div class="lock-icon">🔒</div>
+          <p>Lis le cours avant de passer le QCM.</p>
+          <div class="countdown" id="countdown-num">45</div>
+          <p style="font-size:0.8rem;color:#999">secondes restantes</p>
+          <br>
+          <button class="btn btn-outline btn-sm" id="skip-countdown">Passer directement</button>
+        </div>
+
+        <!-- UNLOCKED STATE -->
+        <div id="qcm-unlocked" class="qcm-body hidden">
+          <div class="qcm-progress-bar">
+            <div class="qcm-progress-fill" id="qcm-progress-fill" style="width:0%"></div>
+          </div>
+          <div id="qcm-questions"></div>
+          <div style="text-align:center;margin-top:20px">
+            <button class="btn btn-primary" id="qcm-submit">Valider mes réponses</button>
+          </div>
+          <div class="score-result" id="qcm-result">
+            <div class="score-circle pass" id="score-circle">
+              <span id="score-num"></span>
+            </div>
+            <h3 id="score-msg"></h3>
+            <p>Module 1 — Réglementation GIM-UEMOA / BCEAO</p>
+            <div class="score-actions">
+              <button class="btn btn-outline" onclick="retryQCM()">🔄 Réessayer (nouvelles questions)</button>
+              <a href="../index.html" class="btn btn-primary">🏠 Retour au tableau de bord</a>
+              <a href="module2.html" class="btn btn-success">▶ Module suivant</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script src="../data/questions.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    initQCMCountdown('module1');
+  });
+</script>
+</body>
+</html>
